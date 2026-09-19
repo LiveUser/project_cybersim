@@ -1,9 +1,10 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:project_cybersim/infrastructure_creator.dart';
 import 'package:project_cybersim/widgets.dart';
 import 'package:raw_context/raw_context.dart';
 
-class CountryDashboard extends StatelessWidget {
+class CountryDashboard extends StatefulWidget {
   const new({
     super.key,
     required this.appDataFolder,
@@ -12,6 +13,11 @@ class CountryDashboard extends StatelessWidget {
   final Directory appDataFolder;
   final Map<String,dynamic> countryObject;
 
+  @override
+  State<CountryDashboard> createState() => _CountryDashboardState();
+}
+
+class _CountryDashboardState extends State<CountryDashboard> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,7 +33,7 @@ class CountryDashboard extends StatelessWidget {
                 children: [
                   Expanded(
                     child: Text(
-                      countryObject["name"],
+                      widget.countryObject["name"],
                       style: TextStyle(
                         color: Colors.redAccent,
                         fontSize: 20,
@@ -37,43 +43,37 @@ class CountryDashboard extends StatelessWidget {
                   RawContext(
                     items: [
                       RawContextItem(
-                        onPressed: (){
-                          //TODO: Create Utility page
+                        onPressed: ()async{
+                          //TODO: Create infrastructure
+                          await Navigator.push(context, MaterialPageRoute(
+                            builder: (context) => InfrastructureCreator(
+                              appDataFolder: widget.appDataFolder,
+                              countryObject: widget.countryObject,
+                            ),
+                          ));
+                          setState(() {
+                            
+                          });
                         },
                         item: Text(
-                          "Utility",
+                          "Create infrastructure",
                         ),
                       ),
                       RawContextItem(
                         onPressed: (){
-                          //TODO: Create Mining page
-                        },
-                        item: Text(
-                          "Mining",
-                        ),
-                      ),
-                      RawContextItem(
-                        onPressed: (){
-                          //TODO: Create Utility page
-                        },
-                        item: Text(
-                          "Production",
-                        ),
-                      ),
-                      RawContextItem(
-                        onPressed: (){
-                          //TODO: Create Utility page
-                        },
-                        item: Text(
-                          "Infrastructure",
-                        ),
-                      ),
-                      RawContextItem(
-                        onPressed: (){
-                          //TODO: Create Utility page
+                          //TODO: View currently available resources
                         },
                         item: Text(
                           "Resources",
+                        ),
+                      ),
+                      RawContextItem(
+                        onPressed: (){
+                          //TODO: Net production
+                          
+                        },
+                        item: Text(
+                          "Production analysis",
                         ),
                       ),
                     ],

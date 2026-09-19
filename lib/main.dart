@@ -73,6 +73,7 @@ class _HomePageState extends State<HomePage> {
           Navigator.push(context, MaterialPageRoute(
             builder: (context) => ResourceCreator(
               appDataFolder: widget.appDataFolder,
+              resourceSelector: false,
             ),
           ));
         },

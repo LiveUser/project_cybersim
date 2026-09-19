@@ -1,6 +1,14 @@
 import 'dart:io';
 import 'package:objective_db/objective_db.dart';
 
+Map<String,dynamic> getObject({
+  required Directory appDataFolder,
+  required String uuid,
+}){
+  DbObject dbObject = DbObject(uuid: uuid, dbPath: appDataFolder.path, cipherKeys: null);
+  return dbObject.view();
+}
+
 void createResource({
   required Directory appDataFolder,
   required String resourceName,
@@ -59,13 +67,7 @@ void createCountry({
     value: [
       {
         "name": countryName,
-        //Basic Utitilities (Consumes Resources to produce basics like electricity and water)
-        "utilities": [],
-        //Inputs resources into the system (Assume extracting costs nothing at first for simplicity)
-        "mining": [],
-        //Production (takes resources as input outputs another resource)
-        "production": [],
-        //Infrastructure (consumes resources but produces no output, example: residential, offices)
+        //Infrastructure
         "infrastructure": [],
         //Resources (Map of available outputed resources)
         "resources": [],

@@ -32,8 +32,9 @@ dependencies:
     sdk: flutter
   path_provider: ^2.1.6
   objective_db: ^0.3.3+27
-  quickie: ^1.0.7+8
+  quickie: ^1.0.9+10
   raw_context: ^1.0.2+1
+  cherry_toast: ^1.13.0
 
 dev_dependencies:
   flutter_test:
