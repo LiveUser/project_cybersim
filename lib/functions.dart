@@ -91,3 +91,16 @@ List<Map<String,dynamic>> getCountries({
   }
   return countries;
 }
+void addInfrastructure({
+  required Directory appDataFolder,
+  required String uuid,
+  required Map<String,dynamic> infrastructureObject,
+}){
+  DbObject countryObject = DbObject(uuid: uuid, dbPath: appDataFolder.path, cipherKeys: null);
+  countryObject.insert(
+    key: "infrastructure", 
+    value: [
+      infrastructureObject,
+    ],
+  );
+}

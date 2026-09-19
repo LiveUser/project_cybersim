@@ -80,6 +80,12 @@ class _CountryDashboardState extends State<CountryDashboard> {
                   ),
                 ],
               ),
+              //TODO: Display Infrastructure Here
+              Column(
+                children: [
+                  
+                ],
+              ),
             ],
           ),
         ),

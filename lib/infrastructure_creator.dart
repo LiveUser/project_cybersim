@@ -127,6 +127,21 @@ class _InfrastructureCreatorState extends State<InfrastructureCreator> {
               Column(
                 children: displayIO(type: "outputs"),
               ),
+              SimpleButton(
+                icon: Icons.add_business, 
+                text: "Create", 
+                onTap: (){
+                  //Create infrastructure
+                  if(infrastructureName.text.isNotEmpty){
+                    addInfrastructure(
+                      appDataFolder: widget.appDataFolder, 
+                      uuid: widget.countryObject["uuid"], 
+                      infrastructureObject: infrastructureObject,
+                    );
+                    Navigator.pop(context);
+                  }
+                },
+              ),
             ],
           ),
         ),
