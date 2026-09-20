@@ -107,6 +107,7 @@ class _InfrastructureCreatorState extends State<InfrastructureCreator> {
                 "Inputs:",
               ),
               Column(
+                spacing: 10,
                 children: displayIO(type: "inputs"),
               ),
               //Output
@@ -133,6 +134,7 @@ class _InfrastructureCreatorState extends State<InfrastructureCreator> {
                 "Outputs:",
               ),
               Column(
+                spacing: 10,
                 children: displayIO(type: "outputs"),
               ),
               SimpleButton(

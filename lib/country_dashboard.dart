@@ -96,9 +96,13 @@ class _CountryDashboardState extends State<CountryDashboard> {
                 ],
               ),
               //TODO: Display Infrastructure Here
-              Column(
-                spacing: 10,
-                children: widgetize(),
+              Expanded(
+                child: SingleChildScrollView(
+                  child: Column(
+                    spacing: 10,
+                    children: widgetize(),
+                  ),
+                ),
               ),
             ],
           ),
@@ -194,6 +198,7 @@ class _InfrastructureViewerState extends State<InfrastructureViewer> {
               ],
             ),
             !dropDown ? SizedBox() : Column(
+              spacing: 10,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
@@ -204,6 +209,7 @@ class _InfrastructureViewerState extends State<InfrastructureViewer> {
                   ),
                 ),
                 Column(
+                  spacing: 10,
                   children: displayIO(type: "inputs"),
                 ),
                 Text(
@@ -214,6 +220,7 @@ class _InfrastructureViewerState extends State<InfrastructureViewer> {
                   ),
                 ),
                 Column(
+                  spacing: 10,
                   children: displayIO(type: "outputs"),
                 ),
               ],
