@@ -104,3 +104,24 @@ void addInfrastructure({
     ],
   );
 }
+List<DbObject> getInfrastructure({
+  required Directory appDataFolder,
+  required String countryUUID,
+}){
+  List<DbObject> infrastructure = [];
+  try{
+    DbObject countryObject = DbObject(uuid: countryUUID, dbPath: appDataFolder.path, cipherKeys: null);
+    infrastructure = countryObject.selectMultiple(key: "infrastructure");
+  }catch(error){
+    //Do nothing
+  }
+  return infrastructure;
+}
+void deleteInfrastructure({
+  required Directory appDataFolder,
+  required String countryUUID,
+  required String infrastructureUUID,
+}){
+  DbObject countryObject = DbObject(uuid: countryUUID, dbPath: appDataFolder.path, cipherKeys: null);
+  countryObject.delete(key: "infrastructure", uuid: infrastructureUUID);
+}

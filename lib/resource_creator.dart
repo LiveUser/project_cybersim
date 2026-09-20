@@ -229,6 +229,9 @@ class _ResourceState extends State<Resource> {
                 );
                 if(shouldDelete == true){
                   widget.delete(widget.resourceObject["uuid"]);
+                  setState(() {
+                    
+                  });
                 }
               }, 
               item: Text(

@@ -30,10 +30,18 @@ class _InfrastructureCreatorState extends State<InfrastructureCreator> {
     required String type,
   }){
     List<Widget> widgets = [];
-    for(Map<String,dynamic> ioObject in infrastructureObject[type]){
+    for(int i = 0; i < (infrastructureObject[type] as List).length; i++){
+      Map<String,dynamic> ioObject = (infrastructureObject[type] as List)[i];
       widgets.add(IoDisplayer(
+        index: i,
         appDataFolder: widget.appDataFolder, 
         ioObject: ioObject,
+        remove: (index) {
+          (infrastructureObject[type] as List).removeAt(index);
+          setState(() {
+            
+          });
+        },
       ));
     }
     return widgets;
@@ -152,11 +160,15 @@ class _InfrastructureCreatorState extends State<InfrastructureCreator> {
 class IoDisplayer extends StatelessWidget {
   const new({
     super.key,
+    required this.index,
     required this.appDataFolder,
     required this.ioObject,
+    required this.remove,
   });
+  final int index;
   final Directory appDataFolder;
   final Map<String,dynamic> ioObject;
+  final Function(int index) remove;
   @override
   Widget build(BuildContext context) {
     Map<String,dynamic> resourceObject = getObject(appDataFolder: appDataFolder, uuid: ioObject["resource-uuid"]);
@@ -168,8 +180,25 @@ class IoDisplayer extends StatelessWidget {
           Icons.chevron_right,
           color: Colors.redAccent,
         ),
-        Text(
-          "${resourceObject["resource_name"]} ${ioObject["amount"]}${resourceObject["unit"]}/hour",
+        Expanded(
+          child: Text(
+            "${resourceObject["resource_name"]} ${ioObject["amount"]} ${resourceObject["unit"]}/hour",
+          ),
+        ),
+        GestureDetector(
+          onTap: (){
+            remove(index);
+          },
+          child: Container(
+            padding: EdgeInsets.all(10),
+            color: Colors.redAccent,
+            child: Text(
+              "remove",
+              style: TextStyle(
+                color: Colors.white,
+              ),
+            ),
+          ),
         ),
       ],
     );
